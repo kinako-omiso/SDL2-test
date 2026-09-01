@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
    SDL_Texture* obstacleTexture = NULL;
    SDL_Rect playerRect = {SCREEN_WIDTH/2 - PLAYER_WIDTH/2, SCREEN_HEIGHT/2 - PLAYER_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT};
    SDL_Rect obstacleRect = {SCREEN_WIDTH, SCREEN_HEIGHT - 100, 50, 50};
+   SDL_Point player_point;
    int obstacleSpeed = 5;
    int Gravity = 2;
    bool isJump = false;
@@ -72,6 +73,9 @@ int main(int argc, char* argv[])
         }
 
         //衝突判定(書きかけ)
+        player_point.x = playerRect.x;
+        player_point.y = playerRect.y; 
+        //if (SDL_PointInRect(player_point, obstacleRect)){}
         //SDL2_rectでサーフェイスを囲み、その領域との被ったときに衝突フラグをonにすればよさそう
         //if(isCollision == false && playerRect.x ){}
 
