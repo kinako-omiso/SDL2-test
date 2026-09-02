@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
         //衝突判定(書きかけ)
         player_point.x = playerRect.x;
         player_point.y = playerRect.y; 
-        //if (SDL_PointInRect(player_point, obstacleRect)){}
+        isCollision = SDL_PointInRect(player_point, obstacleRect);
         //SDL2_rectでサーフェイスを囲み、その領域との被ったときに衝突フラグをonにすればよさそう
         //if(isCollision == false && playerRect.x ){}
 
