@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
    int Gravity = 2;
    bool isJump = false;
    bool isAir = false;
+   bool isGameOver = false;
    int jumpSpeed = 20;
    int jumpHeight = 200;
    int jumpCounter = 0;
@@ -77,7 +78,10 @@ int main(int argc, char* argv[])
         player_point.y = playerRect.y; 
         isCollision = SDL_PointInRect(player_point, obstacleRect);
         //SDL2_rectでサーフェイスを囲み、その領域との被ったときに衝突フラグをonにすればよさそう
-        //if(isCollision == false && playerRect.x ){}
+        if(isCollision == true){
+          isGameOver = true;
+           isCollision = false;
+        }
 
 
        printf("Player Y Position: %d\n", playerRect.y);
