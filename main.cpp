@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
    SDL_Rect obstacleRect = {SCREEN_WIDTH, SCREEN_HEIGHT - 100, 50, 50};
    SDL_Point player_point;
    int obstacleSpeed = 5;
-   int Gravity = 2;
+   int Gravity = 1;
    bool isJump = false;
    bool isAir = false;
    bool isGameOver = false;
@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
    int jumpHeight = 200;
    int jumpCounter = 0;
    bool isCollision = false;
+   const Uint8 *pKeyStatus;
 
    SDL_Init(SDL_INIT_VIDEO);
 
@@ -41,17 +42,19 @@ int main(int argc, char* argv[])
    {
        SDL_Event event;
        while (SDL_PollEvent(&event))
-       {
+        {
            if (event.type == SDL_QUIT)
                return 0;
-           else if (event.type == SDL_KEYDOWN)
-           {
-               if (event.key.keysym.sym == SDLK_SPACE && !isJump && !isAir)
-               {
-                   isJump = true;
-               }
-           }
-       }
+        }
+        
+        pKeyStatus = SDL_GetKeyboardState(NULL);
+        if (pKeyStatus[SDL_SCANCODE_SPACE])
+        {    
+            printf("input SPACE");
+            if (!isJump && !isAir){
+                isJump = true;
+            }
+        }
 
        //ジャンプ処理
        if (isJump)
@@ -96,7 +99,9 @@ int main(int argc, char* argv[])
        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
        SDL_RenderClear(renderer);
 
+       // プレイヤーの移動描画
        SDL_RenderCopy(renderer, playerTexture, NULL, &playerRect);
+       // オブジェクトの移動の描画
        SDL_RenderCopy(renderer, obstacleTexture, NULL, &obstacleRect);
 
        SDL_RenderPresent(renderer);
