@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
     SDL_Rect playerRect = {SCREEN_WIDTH/2 - PLAYER_WIDTH/2, SCREEN_HEIGHT/2 - PLAYER_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT};
     SDL_Rect obstacleRect = {SCREEN_WIDTH, SCREEN_HEIGHT - 100, 50, 50};
     SDL_Point player_point;
+    SDL_Event event;
     int obstacleSpeed = 5;
     int Gravity = 1;
     bool isJump = false;
@@ -41,8 +42,8 @@ int main(int argc, char* argv[])
 
    while (bQuit == false)
    {
-       SDL_Event event;
-       while (SDL_PollEvent(&event))
+        void SDL_PumpEvents(void);
+        while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT){
                 bQuit = true;
@@ -60,8 +61,8 @@ int main(int argc, char* argv[])
             bQuit = true;
         }else if (pKeyStatus[SDL_SCANCODE_D]){
             printf("input D");
-        }else if (pKeyStatus[SDL_SCANCODE_E]){
-            printf("input E");
+        }else if (pKeyStatus[SDL_SCANCODE_A]){
+            printf("input A");
         }
 
         //ジャンプ処理
