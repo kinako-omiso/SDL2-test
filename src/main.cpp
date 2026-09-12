@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
    obstacleTexture = SDL_CreateTextureFromSurface(renderer, surface);
    SDL_FreeSurface(surface);
 
-   while (bQuit == false)
+   while (bQuit == false && isGameOver == false)
    {
         SDL_PumpEvents();
         while (SDL_PollEvent(&event))
@@ -65,7 +65,8 @@ int main(int argc, char* argv[])
         if (pKeyStatus[SDL_SCANCODE_D]){
             printf("input D\n");
             playerRect.x = playerRect.x + 1;
-            pHeadLeft = true;
+            //pHeadLeft = true;
+            pHeadLeft = false;
         }
         if (pKeyStatus[SDL_SCANCODE_A]){
             printf("input A\n");
@@ -113,6 +114,7 @@ int main(int argc, char* argv[])
 
         printf("Player Y Position: %d\n", playerRect.y);
 
+
         obstacleRect.x -= obstacleSpeed;
         if (obstacleRect.x < -obstacleRect.w)
         {
@@ -135,6 +137,15 @@ int main(int argc, char* argv[])
         SDL_RenderPresent(renderer);
         SDL_Delay(10);
     }
+    if (isGameOver == true){
+        printf("   ____    _    __  __ _____ _____     _______ ____  \n");
+        printf("  / ___|  / \\  |  \\/  | ____/ _ \\ \\   / / ____|  _ \\ \n");
+        printf(" | |  _  / _ \\ | |\\/| |  _|| | | \\ \\ / /|  _| | |_) |\n");
+        printf(" | |_| |/ ___ \\| |  | | |__| |_| |\\ V / | |___|  _ < \n");
+        printf("  \\____/_/   \\_\\_|  |_|_____\\___/  \\_/  |_____|_| \\_\\\n");
+        printf("                                                     \n");
+    }
+    SDL_Delay(5000);
 
     SDL_DestroyTexture(playerTexture);
     SDL_DestroyTexture(obstacleTexture);
