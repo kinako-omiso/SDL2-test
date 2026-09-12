@@ -24,5 +24,6 @@
 
   // 定型コードのスニペット候補は不要なら無効化
   "editor.snippetSuggestions": "none",
+  "C_Cpp.errorSquiggles": "disabled",
 
 }

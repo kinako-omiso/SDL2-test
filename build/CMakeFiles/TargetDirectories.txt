@@ -1,0 +1,3 @@
+C:/Users/kinak/my-project/Others/SDL2-test/build/CMakeFiles/SDLGame.dir
+C:/Users/kinak/my-project/Others/SDL2-test/build/CMakeFiles/edit_cache.dir
+C:/Users/kinak/my-project/Others/SDL2-test/build/CMakeFiles/rebuild_cache.dir

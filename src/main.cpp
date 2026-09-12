@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+#include <SDL2/SDL.h> 
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
@@ -63,6 +63,10 @@ int main(int argc, char* argv[])
             printf("input D");
         }else if (pKeyStatus[SDL_SCANCODE_A]){
             printf("input A");
+        }else if (pKeyStatus[SDL_SCANCODE_Q]){
+            bQuit = true;
+        }else if (pKeyStatus[SDL_SCANCODE_Z]){
+            bQuit = true;
         }
 
         //ジャンプ処理
