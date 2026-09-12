@@ -22,6 +22,7 @@ int main(int argc, char* argv[])
     bool isGameOver = false;
     bool isCollision = false;
     bool bQuit = false;
+    bool pHeadLeft = false;
     int jumpSpeed = 20;
     int jumpHeight = 200;
     int jumpCounter = 0;
@@ -42,7 +43,7 @@ int main(int argc, char* argv[])
 
    while (bQuit == false)
    {
-        void SDL_PumpEvents(void);
+        SDL_PumpEvents();
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT){
@@ -50,22 +51,31 @@ int main(int argc, char* argv[])
             }
         }
         
-        pKeyStatus = SDL_GetKeyboardState(NULL);
+        pKeyStatus = SDL_GetKeyboardState(nullptr);
         if (pKeyStatus[SDL_SCANCODE_SPACE])
         {    
             printf("input SPACE");
             if (!isJump && !isAir){
                 isJump = true;
             }
-        }else if (pKeyStatus[SDL_SCANCODE_ESCAPE]){
+        }
+        if (pKeyStatus[SDL_SCANCODE_ESCAPE]){
             bQuit = true;
-        }else if (pKeyStatus[SDL_SCANCODE_D]){
-            printf("input D");
-        }else if (pKeyStatus[SDL_SCANCODE_A]){
-            printf("input A");
-        }else if (pKeyStatus[SDL_SCANCODE_Q]){
+        }
+        if (pKeyStatus[SDL_SCANCODE_D]){
+            printf("input D\n");
+            playerRect.x = playerRect.x + 1;
+            pHeadLeft = true;
+        }
+        if (pKeyStatus[SDL_SCANCODE_A]){
+            printf("input A\n");
+            playerRect.x = playerRect.x - 1;
+            pHeadLeft = false;
+        }
+        if (pKeyStatus[SDL_SCANCODE_Q]){
             bQuit = true;
-        }else if (pKeyStatus[SDL_SCANCODE_Z]){
+        }
+        if (pKeyStatus[SDL_SCANCODE_Z]){
             bQuit = true;
         }
 
@@ -95,9 +105,9 @@ int main(int argc, char* argv[])
             isCollision = SDL_PointInRect(&player_point, &obstacleRect);
             //SDL2_rectでサーフェイスを囲み、その領域との被ったときに衝突フラグをonにすればよさそう
             if(isCollision == true){
-            isGameOver = true;
-            printf("あたった！");
-            isCollision = false;
+                isGameOver = true;
+                printf("HIT!!!!\n");
+                isCollision = false;
             }
 
 
@@ -113,7 +123,12 @@ int main(int argc, char* argv[])
         SDL_RenderClear(renderer);
 
         // プレイヤーの移動描画
-        SDL_RenderCopy(renderer, playerTexture, NULL, &playerRect);
+        if (pHeadLeft == true){
+            SDL_RenderCopy(renderer, playerTexture, NULL, &playerRect);
+        }else{
+            SDL_RenderCopyEx(renderer,playerTexture,NULL,&playerRect,0,NULL,SDL_FLIP_HORIZONTAL);
+        }
+        
         // オブジェクトの移動の描画
         SDL_RenderCopy(renderer, obstacleTexture, NULL, &obstacleRect);
 
