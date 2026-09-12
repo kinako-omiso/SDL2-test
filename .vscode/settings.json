@@ -26,4 +26,7 @@
   "editor.snippetSuggestions": "none",
   "C_Cpp.errorSquiggles": "disabled",
 
+  //Cmakeが保持しているSDL2の情報を渡す
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+
 }

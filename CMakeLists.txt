@@ -17,7 +17,7 @@ find_package(SDL2_mixer CONFIG REQUIRED)
 find_package(SDL2_net CONFIG REQUIRED)
 
 
-add_executable(SDLGame WIN32
+add_executable(SDLGame ## WIN32はRelease版用,GUIアプリとしてビルド
     src/main.cpp
 )
 
